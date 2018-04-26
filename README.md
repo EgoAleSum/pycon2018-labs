@@ -15,7 +15,7 @@ In addition to the two files above, you can **optionally** add:
 1. An `azuredeploy.json` file containing, which is an ARM template describing the resources that needs to be pre-provisioned before the lab starts.
 1. An `assets` folder containing documents that need to be copied inside the VM (in a subfolder on the Desktop named after the lab)
 
-The instructions to create a lab are present here: https://github.com/LearnOnDemandSystems/guides/tree/master/idl2 This document also describes the custom additions to the Markdown format for the lab.
+The instructions to create a lab are present here: https://github.com/LearnOnDemandSystems/guides/tree/b00c85c0b42f656ee7d60fd7907625e4a5973de2/idl2 This document also describes the custom additions to the Markdown format for the lab.
 
 ## Info
 
