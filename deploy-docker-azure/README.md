@@ -1,29 +1,26 @@
 # Deploy a docker image to Azure Web Apps for Containers
 
-Starting with the sample docker container provided, you will create an Azure Web App and deploy the docker container.
+Starting with the sample app provided, you will create an Docker image, Azure Container Registry, and Azure Web App that uses the registry and Docker image.
 
-[ ] 1. In the docker tab of the explorer, right click on the container named `pycondemos.azurecr.io/docker-pycondemo` and select Push
+1. [ ] In the `app/main.py` file, modify the "Hello World!" message on line 6 to a fun message of your choice, type in some HTML if you want!
 
-[ ] 2. Press `Ctrl-Shift-P` and type + select `Azure: Open Bash in Cloud Shell`
+2. [ ] Open the integrated terminal in VS Code by pressing ``Ctrl-` ``
 
-![alt text](Images/BashCloudShell.png)
+3. [ ] Build the docker image by typing `docker build -t pyconlabs.azurecr.io/<app_name>:latest .`, make sure to pick a unique name for `<app_name>`, e.g. `<your_name>lab`
 
-[ ] 3. In the terminal run the following command to create a new webapp: 
+4. [ ] In the docker tab of the explorer, right click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
 
-`az webapp create --name MyDockerWebApp --resource-group PyConDemos --plan PyConDemosPlan --deployment-container-image-name "pycondemos.azurecr.io/docker-pycondemo"`
+![Push docker image](Images/PushDockerImage.png)
+5. [ ] Right->click Deploy to Azure App service, in the series of menus pick:
+ - `DockerLab` for the resource group
+ - `DockerLabPlan` for the app service plan name
+ - `B1 Basic` for the plan SKU
+ - Name the site using the same `<app_name>` you picked above
 
-Feel free to change MyDockerWebApp to a name of your choosing, just remember to use the same name in the following steps.
+6. [ ] Run the following commands from the terminal to set the port number on the site and restart it:
+```
+az webapp config appsettings set --name <app_name> --resource-group DockerLab --settings  WEBSITES_PORT=8000
+az webapp restart --name <app_name> --resource-group DockerLab
+```
 
-[ ] 4. Run the following command to configure the port number:
-
-`az webapp config appsettings set --name MyDockerApp --resource-group WebAppsDemos --settings  WEBSITES_PORT=5000`
-
-[ ] 5. Run the following to configure the web app to pull from the registry:
-
-`az webapp config container set --name MyDockerApp --resource-group PyConDemos --docker-custom-image-name pycondemos.azurecr.io/docker-pycondemo --docker-registry-server-url https://pycondemos.azurecr.io --docker-registry-server-user pycondemos --docker-registry-server-password <TODO>`
-
-[ ] 6. Right-click on MyDockerWebApp in the Azure App Service section of the explorer, and select restart.
-
-![alt text](Images/RestartWebApp.png)
-
-[ ] 7. Browse to `mydockerwebapp.azurewebsite.net` and see your app running!
+7. [ ] Browse to ```<app_name>.azurewebsites.net``` to see your message!

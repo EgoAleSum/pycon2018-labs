@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "registries_pyconlabs_name": {
+            "defaultValue": "pyconlabs",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/597966d1-829f-417e-9950-8189061ec09c/resourceGroups/PyConLabs/providers/Microsoft.ContainerRegistry/registries/pyconlabs'.",
+            "type": "Microsoft.ContainerRegistry/registries",
+            "sku": {
+                "name": "Basic",
+                "tier": "Basic"
+            },
+            "name": "[parameters('registries_pyconlabs_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "southcentralus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "adminUserEnabled": true
+            },
+            "dependsOn": []
+        }
+    ]
+}
