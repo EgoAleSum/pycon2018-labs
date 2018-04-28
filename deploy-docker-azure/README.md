@@ -8,14 +8,19 @@ Starting with the sample app provided, you will create an Docker image, Azure Co
 
 3. [ ] Build the docker image by typing `docker build -t pyconlabs.azurecr.io/<app_name>:latest .`, make sure to pick a unique name for `<app_name>`, e.g. `<your_name>lab`
 
-4. [ ] In the docker tab of the explorer, right click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
+4. [ ] In the docker tab of the explorer, right-click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
 
 ![Push docker image](Images/PushDockerImage.png)
-5. [ ] Right->click Deploy to Azure App service, in the series of menus pick:
+
+5. [ ] Right->click Deploy to Azure App service, 
+
+![Push docker image](Images/DeployImageToAppService.png)
+
+In the series of menus enter:
  - `DockerLab` for the resource group
  - `DockerLabPlan` for the app service plan name
  - `B1 Basic` for the plan SKU
- - Name the site using the same `<app_name>` you picked above
+ - The same `<app_name>` you picked above for the site name
 
 6. [ ] Run the following commands from the terminal to set the port number on the site and restart it:
 ```
