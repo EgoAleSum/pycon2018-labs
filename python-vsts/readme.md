@@ -31,10 +31,12 @@ First, we will provision a Team Services account.
 
 1. Navigate to the Code hub. Since there is no code yet, you wil see an empty repository. For this lab, we will be importing a repository from GitHub.
 
-  ![Import a Repository](images/TODO)
+  ![Import a Repository](images/import.png)
 
 1. Copy and paste the URL below and click **Import**. No authorization is required, as this is a public repository.
    > URL: ++https://github.com/warsaw/importlib_resources++
+
+  ![The importlib_resources Repository](images/import_repository.png)
 
 1. Wait until the repository import has been completed and the files are displayed. Take some time to browse the contents of the repository before continuing.
 
@@ -44,13 +46,11 @@ In this part, we will create a build definition as a YAML file in the repository
 
 1. In the Files view of your imported repository, select the top level directory.
 
-  ![Top-level directory of the importlib_resources repository](images/TODO)
+  ![Top-level directory of the importlib_resources repository](images/files.png)
 
-1. Click **New** and select **File**.
+1. Click **New** and select **File**. As the filename, enter ++.vsts-ci.yml++ and click **Create**.
 
-  ![New/File popup](images/TODO)
-
-1. As the filename, enter ++.vsts-ci.yml++ and click **Create**.
+  ![New/File popup](images/new_file.png)
 
 1. Copy and paste the code below into the editor. This build definition will run tests on both Linux and MacOS, and if all tests pass, will generate a wheel and sdist.
 
@@ -65,24 +65,34 @@ phases:
   steps:
   - script: python3 -m pip install --upgrade pip setuptools && python3 -m pip install pytest
     displayName: 'Install Testing Tools'
-  - script: python3 -m pytest --pyargs importlib_resources.tests
+  - script: python3 -m pytest --pyargs importlib_resources.tests --junitxml=junit/test-results.xml
     displayName: 'pytest importlib_resources.tests'
+  - task: PublishTestResults@2
+    displayName: 'Publish test results'
+    inputs:
+      testResultsFiles: '**/test-results.xml'
+      testRunTitle: 'Linux'
 
-- phase: 'MacOS_Test'
-  displayName: 'Test on MacOS'
+- phase: 'macOS_Test'
+  displayName: 'Test on macOS'
   queue:
-    name: 'Hosted MacOS Preview'
+    name: 'Hosted macOS Preview'
   steps:
   - script: python3 -m pip install --upgrade pip setuptools && python3 -m pip install pytest
     displayName: 'Install Testing Tools'
-  - script: python3 -m pytest --pyargs importlib_resources.tests
+  - script: python3 -m pytest --pyargs importlib_resources.tests --junitxml=junit/test-results.xml
     displayName: 'pytest importlib_resources.tests'
+  - task: PublishTestResults@2
+    displayName: 'Publish test results'
+    inputs:
+      testResultsFiles: '**/test-results.xml'
+      testRunTitle: 'macOS'
 
 - phase: 'Publish'
   displayName: 'Publish'
   dependsOn:
   - 'Linux_Test'
-  - 'MacOS_Test'
+  - 'macOS_Test'
   queue:
     name: 'Hosted Linux Preview'
   steps:
@@ -96,7 +106,6 @@ phases:
       pathToPublish: 'dist'
       artifactName: 'dist'
       artifactType: 'container'
-
 ```
 
 1. Click **Commit** to add this file directly to the master branch of your repository.
@@ -107,19 +116,21 @@ Adding a `.vsts-ci.yml` file automatically configures the build, so there are no
 
 1. Hover over **Build and Release** and select **Builds** from the menu. You will see one build definition listed for your repository that is currently **In progress** (or perhaps even complete!)
 
-  ![Build on Build Definitions page](images/TODO)
+  ![Link to Build Definitions page](images/builds.png)
+
+  ![Build on Build Definitions page](images/build.png)
 
 > [!KNOWLEDGE] You can manually create build definitions from this page by selecting **New**. This offers a range of templates and tasks, and keeps the build separate from your code. After creating a build definition in this way, you can export it as YAML through the **View YAML** commands.
 
-1. Click on the version number to jump to the build page. You will see a tree of build tasks on the left hand side. Selecting any of these will display the logs from that step.
+1. Click on the version number to jump to the build page. You will see a tree of build tasks on the left hand side. Selecting any of these will display the logs from that step. On the right hand side is a summary of the build, including new commits since the last build and test results.
 
-  ![Build logs and tasks](images/TODO)
+  ![Build results page](images/build_result.png)
 
 1. If the build was successful, select the **Artifacts** tab to view the generated outputs. Click **Explore** to view and download individual files.
 
-  ![The Artifacts tab](images/TODO)
+  ![The Artifacts tab](images/artifacts.png)
 
-  ![Exploring build outputs](images/TODO)
+  ![Exploring build outputs](images/outputs.png)
 
 > [!NOTE] If any tasks failed, they will be marked with a red cross in the tree at the left. Select the failed task to review its logs.
 
