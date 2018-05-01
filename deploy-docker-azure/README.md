@@ -2,7 +2,7 @@
 
 ## Overview
 
-VS Code extensions are a way to customize your development environment with the exact tools you need. The Docker extension makes it easy to build and deploy containerized applications from Visual Studio Code and includes functionality:
+VS Code extensions are a way to customize your development environment with the exact tools you need. The Docker and Azure extensions make it easy to build and deploy containerized applications from Visual Studio Code and includes functionality:
 
 - Automatic Dockerfile and docker-compose.yml file generation
 - Syntax highlighting and hover tips for docker-compose.yml and Dockerfile files
@@ -28,7 +28,7 @@ In this lab, you will:
 
 3. [ ] Build the docker image by typing `docker build -t pyconlabs.azurecr.io/<app_name>:latest .`, make sure to pick a unique name for `<app_name>`, e.g. `<your_name>lab`
 
-## Part B: Create Web App and Azure Container Registry
+## Part B: Create Web App from Container
 
 4. [ ] In the docker tab of the explorer, right-click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
 
