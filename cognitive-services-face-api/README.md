@@ -27,4 +27,4 @@ Explore the [directory](https://azure.microsoft.com/en-us/services/cognitive-ser
 
 ### Getting an API Key
 
-An API Key is provided for you during the lab, but it's also easy to get a free API key [here](https://azure.microsoft.com/en-us/try/cognitive-services/?api=face-api). 
+An API Key is provided for you during the lab, but it's also easy to get a free API key [here](https://azure.microsoft.com/en-us/try/cognitive-services/?api=face-api).

@@ -14,28 +14,30 @@ You can try it on a photo of yourself or use any photo from the internet by prov
 
 You'll need an API Key for the Face API. In this lab one is provided for you, but if you'd like to take the API for a spin at home, it's easy to get a free API key.
 
-In the example below, we'll be using the `requests` library to make queries using a jupyter notebook, but you can just as easily run the example in a Python REPL. As an alternative, the Microsoft Face API also has a handy Python SDK that can be installed with `pip install cognitive_face`.
+In the example below, we'll be using the `requests` library to make queries using a jupyter notebook, but you can just as easily run the example in a Python REPL. As an alternative, the Microsoft Face API also has a handy Python SDK that can be installed with `pip install cognitive_face`
 
 
-## What's covered in this lab?
+## What's Covered in This Lab?
 
 In this lab, you will:
 
 * Select an image to use with the Face API
 * Make a query to the API, providing the image
-* Get the results of the query back in JSON format, showing which emotion is likely displayed in the image.
+* Get the results of the query back in JSON format, showing which emotion is likely displayed in the image
 
 ## Part A: Set Up
 
 Let's start by creating a new jupyter notebook. 
 
-Type: `jupyter notebook` into the terminal. Once the notebook is open, select `New -> Python 3 Notebook` from the top right-hand side of the window. 
+In windows, press start, then search for "Notebook". Once the notebook is open, select `New -> Python 3 Notebook` from the top right-hand side of the window. 
 
-![Create Jupyter Notebook](images/create-notebook.png)
+!IMAGE[Create Jupyter Notebook](images/create-notebook.png)
 
 Next, enter the following code into the notebook, and select 'Run' from the toolbar.
 
-![Run Jupyter Notebook](images/run-notebook.png)
+!IMAGE[Run Jupyter Notebook](images/run-notebook.png)
+
+Note that we'll be following the same format throughout this lab. Paste in the sample code, then run it. 
 
 ```python
 import requests
@@ -43,13 +45,23 @@ import requests
 api_key = 'YOUR_API_KEY'
 api_url = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # or your region, if different.
 face_detect_endpoint_url = api_url + '/detect'
+```
 
-# specify your own image as image_url or uncomment one of the images provided below
-# sad_image_url = 'https://i.imgur.com/RLSN9rx.jpg'
-# surprised_image_url = 'https://i.imgur.com/vEuLg5n.jpg'
+Next, let's select an image to run the face detection algorithm on. You can use an image of your own by providing the URL, or you can use one of the sample images included in the demo at the URLs below.
+
+The sample images look like this:
+
+| !IMAGE[Happy](images/happy.jpg) | !IMAGE[Surprised](images/surprised.jpg) | !IMAGE[Sad](images/sad.jpg) |
+|:----------------------------------------------|:--------------------------------------------------|:--------------------------------------------|
+
+
+```python
+sad_image_url = 'https://i.imgur.com/RLSN9rx.jpg'
+surprised_image_url = 'https://i.imgur.com/vEuLg5n.jpg'
 happy_image_url = 'https://i.imgur.com/aegNK4W.jpg'
-image_url = happy_image_url
 
+# specify your own image as image_url or use one of the sample images provided above
+image_url = happy_image_url
 ```
 
 In this code, we've specified our API Key, the API URL for the region we'll be using, the specific endpoint we want to hit (detect), and the URL of the image we want to run the detection algorithm on. 
@@ -66,18 +78,13 @@ params = {
     'returnFaceAttributes': 'emotion'
 }
 ```
-In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as:
-
-```python
-age, gender, headPose, smile, facialHair, glasses, 
-emotion, hair, makeup, occlusion, accessories, blur, exposure, noise
-```
+In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as: `age, gender, headPose, smile, facialHair, glasses, emotion, hair, makeup, occlusion, accessories, blur, exposure, noise`
 
 To use them, you'd append these attributes as coma separated values to the `returnFaceAttributes` parameter.
 
 ## Part C: Make the Request
 
-Now we have enough information to call the API and save the response JSON to an attribute named `faces`.
+Now we have enough information to call the API and save the response JSON to an attribute named `faces`
 
 ```python
 response = requests.post(face_detect_endpoint_url, params=params, headers=headers, json={'url': image_url})
@@ -94,7 +101,7 @@ print('Found {} faces in the photo.'.format(len(faces)))
 pprint(response.json())
 ```
 
-The response is a list of dictionaries, containing a record for each unique face. It contains information such as an ID for the face we've identified, and the bounding rectangle for the face in the image we provided.
+The response is a list of dictionaries, containing a record for each unique face. It contains information such as an ID for the face we've identified, and the bounding rectangle coordinates for the face in the image we provided. 
 
 The data we're looking for is under the key of `faceAttribute -> emotion`. The API returns the likelihood of the image being classified as one of several emotions. The probabilities sum to 1, meaning to get the dominant emotion we'll need to retrieve the key with the highest value.
 
@@ -109,16 +116,5 @@ for index, face in enumerate(faces):
 
 ## Conclusion
 
-That's it! We learned how fast and easy it was to classify an image by emotion. 
-This lab covered just one facet of the Cognitive Services API. If you'd like to see more, try the other lab that showcases the text features of the Cognitive Services API. 
-
----
-
-Outstanding Questions / Todos
-
-- Update links (need access to custom markdown guide)
-- Do I need an ARM template?
-- Api Keys
-	- Need to set up an API Key with no rate-limiting (under what account?)
-	- or
-	- Should I display a link to set up API Key or should show azure dashboard instead?
+That's it! We've learned how fast and easy it is to classify an image by emotion. 
+This lab covered just one facet of the Cognitive Services API. If you'd like to see more, try the other lab that showcases the text features of the Cognitive Services API.
