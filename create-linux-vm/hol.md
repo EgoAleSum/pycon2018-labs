@@ -60,7 +60,7 @@ You will have to specify a few options:
 - Give your VM a name so it's identifiable in the Azure Portal. This will also be the VM's default hostname.
 - As disk type, choose "SSD". This will make sure that the VM's OS disk is backed by SSD. The OS disk is always persistent and safely stored in Azure Storage, where it's replicated 3 times.
 - Choose the login username (a UNIX username) and password. On a production environment you'll likely want to use SSH public keys instead.
-- You should have access to a single Subscription and Resource Group only, already created for you.
+- With this free lab subscription, you should have access to a single Subscription and Resource Group only, already created for you. Make sure you **select the existing Resource Group**!
 - Location is the Azure Region where your VM is deployed. You can choose any Region around the world (*please note that your free lab subscription might not be enabled for all Azure Regions*).
 
 ![Create VM: Step 1](images/vm-step-1.png)
