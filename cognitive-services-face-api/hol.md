@@ -75,6 +75,7 @@ Now we'll need to do a bit of configuration before we call the endpoint. This AP
 headers = {'Ocp-Apim-Subscription-Key': '72f5dda62fd74d11a842f33f730702a6'}
 params = {'returnFaceAttributes': 'emotion'}
 ```
+
 In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as: `age`, `gender`, `headPose`, `smile`, `facialHair`, `glasses`, `hair`, `makeup`, `occlusion`, `accessories`, `blur`, `exposure`, `noise`
 
 To use them, you'd append these attributes as coma separated values to the `returnFaceAttributes` parameter.
