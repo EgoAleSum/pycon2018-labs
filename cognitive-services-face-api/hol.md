@@ -40,7 +40,7 @@ Note that we'll be following the same format throughout this lab. Paste in the s
 
 If you created your own key for the API, update `api_key` and `api_url` with the values from the Azure Portal.
 
-```python
+```
 import requests
 
 api_key = 'YOUR_API_KEY'
