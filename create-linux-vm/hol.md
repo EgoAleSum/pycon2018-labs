@@ -18,9 +18,7 @@ In this lab, you will:
 
 1. Open your browser inside the virtual desktop on the left and navigate to https://portal.azure.com
 
-1. Login with the following username and password:
-   > Username: ++@lab.CloudPortalCredential(1).Username++    
-   > Password: ++@lab.CloudPortalCredential(1).Password++
+1. Login with the username and password provided at the beginning of this guide.
 
 ### Step 2: Create a Linux VM
 
@@ -59,7 +57,7 @@ You will have to specify a few options:
 
 - Give your VM a name so it's identifiable in the Azure Portal. This will also be the VM's default hostname.
 - As disk type, choose "SSD". This will make sure that the VM's OS disk is backed by SSD. The OS disk is always persistent and safely stored in Azure Storage, where it's replicated 3 times.
-- Choose the login username (a UNIX username) and password. On a production environment you'll likely want to use SSH public keys instead.
+- Choose the login username (a UNIX username) and password. On a production environment you'll likely want to use SSH public keys instead. Don't forget this password, as you'll need this in a few minutes!
 - With this free lab subscription, you should have access to a single Subscription and Resource Group only, already created for you. Make sure you **select the existing Resource Group**!
 - Location is the Azure Region where your VM is deployed. You can choose any Region around the world (*please note that your free lab subscription might not be enabled for all Azure Regions*).
 
@@ -109,24 +107,19 @@ The VM blade has a lot of information! You can see information about the VM, as 
 
 At this point, connecting to our VM is as easy as opening the terminal and connecting to it via SSH, as you would do with any other Linux/BSD VM.
 
-The remote desktop should have the "Windows Subsystem for Linux" installed, which allows you to run Linux binaries natively on top of the Windows kernel, including OpenSSH. You can choose what Linux distribution to use; the remote desktop has Ubuntu pre-configured. To open it, click on the Windows start button, then type "Ubuntu" and select the first result.
+The remote desktop has PuTTY installed, which is the most popular SSH client for Windows. To open it, click on the Windows start button, then search for "PuTTY".
 
-![Launching Ubuntu](images/ubuntu-wsl.png)
+![Launching PuTTY](images/launch-putty.png)
 
-> The remote desktop should have PuTTY installed too, if you are more familiar with that tool.
+Type the public IP of the VM in the "Host Name (or IP Address)" field - the one you copied from the Azure Portal; leave every other option as is, then click on "Open".
 
-You will see a Bash terminal ready to be used. Type the following command to connect to your VM via SSH:
+![Connect using PuTTY](images/connect-putty.png)
 
-````sh
-ssh [username]@[VM Public IP]
+Accept the security alert that will appear, then log in using your username (in the example, "gilfoyle") and the SSH password that you set while creating the VM.
 
-# For example:
-ssh gilfoyle@52.229.23.178
-````
+After authenticating, you'll see a terminal connected to your Linux/BSD VM on Azure, ready for you to do whatever you need!
 
-Hit return, accept the public key (type `yes` and hit return again), type the password for the VM you set up in the step above, and you'll be connected to your VM on Azure!
-
-![Connecting via SSH](images/ssh.png)
+![SSH via PuTTY](images/ssh-putty.png)
 
 ## Next steps
 
