@@ -2,48 +2,49 @@
 
 ## Overview
 
-Cognitive Service is a suite of APIs that allow you to take advantage of powerful algorithms to help you interpret and analyze graphics, text, and much more. 
+Azure Cognitive Services is a suite of APIs that allow you to take advantage of powerful Machine Learning algorithms without becoming an expert.
 
-In this lab, we'll be using the Azure Cognitive Services Face API and Python to determine which emotion a person is likely displaying in a particular photo. 
+In this lab, we'll be using the Azure Cognitive Services [Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/overview) and Python to predict which emotion a person is displaying in a particular photo. 
 
-This lab will take approximately 5-10 minutes to complete, and requires only novice python knowledge.
-
-You can try it on a photo of yourself or use any photo from the internet by providing the URL.
+This lab will take approximately 5-10 minutes to complete, and requires only novice Python knowledge.
 
 ## Prerequisites
 
-You'll need an API Key for the Face API. In this lab one is provided for you, but if you'd like to take the API for a spin at home, it's easy to get a free API key.
+Using the Face API requires a key, which is provided in this lab. 
 
-In the example below, we'll be using the `requests` library to make queries using a jupyter notebook, but you can just as easily run the example in a Python REPL. As an alternative, the Microsoft Face API also has a handy Python SDK that can be installed with `pip install cognitive_face`
+If you want a key of your own, go to [https://portal.azure.com](https://portal.azure.com), select the Face API and follow the instructions to create your free Face API key. Then use the endpoint and the key from the portal .
 
+In the example below, we'll be using the `requests` library to make queries using a Jupyter Notebook.
 
 ## What's Covered in This Lab?
 
 In this lab, you will:
 
-* Select an image to use with the Face API
-* Make a query to the API, providing the image
-* Get the results of the query back in JSON format, showing which emotion is likely displayed in the image
+* Select an image with a face
+* Send the selected image's URL to the Face API
+* Parse the JSON response to get the predicted emotion of the face(s) in the image
 
 ## Part A: Set Up
 
-Let's start by creating a new jupyter notebook. 
+Let's start by creating a new Jupyter Notebook. 
 
-In windows, press start, then search for "Notebook". Once the notebook is open, select `New -> Python 3 Notebook` from the top right-hand side of the window. 
+Press start or click on the bottom left area 'Type here to search', then search for "Notebook" and select `Jupyter Notebook`. Once the notebook is open, select `New -> Notebook: Python 3 ` from the top right-hand side of the window. 
 
 !IMAGE[Create Jupyter Notebook](images/create-notebook.png)
 
-Next, enter the following code into the notebook, and select 'Run' from the toolbar.
+Next, enter the following code into the notebook, and select 'Run' from the toolbar or use the keyboard shortcut `shift + enter`
 
 !IMAGE[Run Jupyter Notebook](images/run-notebook.png)
 
 Note that we'll be following the same format throughout this lab. Paste in the sample code, then run it. 
 
+If you created your own key for the API, update `api_key` and `api_url` with the values from the Azure Portal.
+
 ```python
 import requests
 
 api_key = 'YOUR_API_KEY'
-api_url = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # or your region, if different.
+api_url = 'https://eastus2.api.cognitive.microsoft.com/face/v1.0'  # or your region, if different.
 face_detect_endpoint_url = api_url + '/detect'
 ```
 
@@ -72,13 +73,13 @@ Now we'll need to do a bit of configuration before we call the endpoint. The API
 
 ```python
 headers = {
-    'Ocp-Apim-Subscription-Key': 'b4a362ad13f74ef3b5befaa7561a068a'
+    'Ocp-Apim-Subscription-Key': '72f5dda62fd74d11a842f33f730702a6'
 }
 params = {
     'returnFaceAttributes': 'emotion'
 }
 ```
-In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as: `age, gender, headPose, smile, facialHair, glasses, emotion, hair, makeup, occlusion, accessories, blur, exposure, noise`
+In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as: `age, gender, headPose, smile, facialHair, glasses, hair, makeup, occlusion, accessories, blur, exposure, noise`
 
 To use them, you'd append these attributes as coma separated values to the `returnFaceAttributes` parameter.
 
@@ -103,7 +104,7 @@ pprint(response.json())
 
 The response is a list of dictionaries, containing a record for each unique face. It contains information such as an ID for the face we've identified, and the bounding rectangle coordinates for the face in the image we provided. 
 
-The data we're looking for is under the key of `faceAttribute -> emotion`. The API returns the likelihood of the image being classified as one of several emotions. The probabilities sum to 1, meaning to get the dominant emotion we'll need to retrieve the key with the highest value.
+The data we're looking for is under the key of `faceAttribute -> emotion`. The API returns the probability that the face in the image is displaying a particular emotion. The emotion with the highest probability will have the value closest to 1, meaning to get the dominant emotion we'll need to retrieve the key with the highest value.
 
 Let's try it!
 
@@ -117,4 +118,4 @@ for index, face in enumerate(faces):
 ## Conclusion
 
 That's it! We've learned how fast and easy it is to classify an image by emotion. 
-This lab covered just one facet of the Cognitive Services API. If you'd like to see more, try the other lab that showcases the text features of the Cognitive Services API.
+This lab covered just one facet of the Cognitive Services API. If you'd try more Cognitive Services, run through some [demos](https://aidemos.microsoft.com/) to see what else is possible with these services.
