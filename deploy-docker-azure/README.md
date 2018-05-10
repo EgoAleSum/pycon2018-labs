@@ -24,19 +24,27 @@ In this lab, you will:
 
 1. [ ] In the `app/main.py` file, modify the "Hello World!" message on line 6 to a fun message of your choice, type in some HTML if you want!
 
-2. [ ] Open the integrated terminal in VS Code by pressing ``Ctrl-` ``
+2. [ ] Right-click on the `Dockerfile` file and select `Build Image` to build the docker image. Name the image `pyconlabs.azurecr.io/<app_name>:latest`, where `<app_name>` is a globally unique name, e.g. `<your_name_no_spaces>pycon`.
 
-3. [ ] Build the docker image by typing `docker build -t pyconlabs.azurecr.io/<app_name>:latest .`, make sure to pick a unique name for `<app_name>`, e.g. `<your_name>lab`
+!IMAGE[Build Docker Image](images/BuildImage.png)
 
-## Part B: Create Web App from Container
+## Part B: Sign in to Azure
 
-4. [ ] In the docker tab of the explorer, right-click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
+3. [ ] Press `Ctrl+Shift+P` to open the Command Palette, type and/or select `> Azure: Sign In`.
 
-![Push docker image](Images/PushDockerImage.png)
+!IMAGE[Build Docker Image](images/AzureSignIn.png)
 
-5. [ ] Right->click Deploy to Azure App service, 
+4. [ ] Click the `Copy + Open` button, and login using the email and password listed above (you can use the copy button to copy the email and password).
 
-![Push docker image](Images/DeployImageToAppService.png)
+## Part C: Create Web App from Container
+
+5. [ ] In the docker tab of the explorer, right-click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
+
+!IMAGE[Push docker image](Images/PushDockerImage.png)
+
+6. [ ] Right->click Deploy to Azure App service, 
+
+!IMAGE[Push docker image](Images/DeployImageToAppService.png)
 
 In the series of menus enter:
  - `DockerLab` for the resource group
@@ -44,13 +52,16 @@ In the series of menus enter:
  - `B1 Basic` for the plan SKU
  - The same `<app_name>` you picked above for the site name
 
-## Part C: Final configuration
+## Part D: Final configuration
 
-6. [ ] Run the following commands from the terminal to set the port number on the site and restart it:
-```
-az webapp config appsettings set --name <app_name> --resource-group DockerLab --settings  WEBSITES_PORT=8000
+Finally, we need to set the port number on the site to match the port on the Docker container.
 
-az webapp restart --name <app_name> --resource-group DockerLab
-```
+7. [ ] Go to the Azure tab, expand the subscription and web site, right-click on Application settings and select `Add New Setting...`. Name the setting `WEBSITES_PORT`, and set the value to `8000`.
 
-7. [ ] Browse to ```<app_name>.azurewebsites.net``` to see your message!
+!IMAGE[Push docker image](Images/AddSetting.png)
+
+8. [ ] Right-click on the site and select `Restart`, and wait for the site to finish restarting
+
+!IMAGE[Push docker image](Images/RestartWebApp.png)
+
+9. [ ] Right-click on the site and select `Browse`, or browse to ```<app_name>.azurewebsites.net``` to see your message! It may take a minute to load.
