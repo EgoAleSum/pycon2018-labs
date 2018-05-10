@@ -22,27 +22,29 @@ In this lab, you will:
 
 ## Part A: Create a Docker container in VS Code
 
-1. [ ] In the `app/main.py` file, modify the "Hello World!" message on line 6 to a fun message of your choice, type in some HTML if you want!
+1. [ ] Double click on the Visual Studio Code icon on the desktop to open Visual Studio Code
 
-2. [ ] Right-click on the `Dockerfile` file and select `Build Image` to build the docker image. Name the image `pyconlabs.azurecr.io/<app_name>:latest`, where `<app_name>` is a globally unique name, e.g. `<your_name_no_spaces>pycon`.
+2. [ ] In the `app/main.py` file, modify the "Hello World!" message on line 6 to a fun message of your choice, type in some HTML if you want!
+
+3. [ ] Right-click on the `Dockerfile` file and select `Build Image` to build the docker image. Name the image `pyconlabs.azurecr.io/<app_name>:latest`, where `<app_name>` is a globally unique name, e.g. `<your_name_no_spaces>pycon`.
 
 !IMAGE[Build Docker Image](images/BuildImage.png)
 
 ## Part B: Sign in to Azure
 
-3. [ ] Press `Ctrl+Shift+P` to open the Command Palette, type and/or select `> Azure: Sign In`.
+4. [ ] Press `Ctrl+Shift+P` to open the Command Palette, type and/or select `> Azure: Sign In`.
 
 !IMAGE[Build Docker Image](images/AzureSignIn.png)
 
-4. [ ] Click the `Copy + Open` button, and login using the email and password listed above (you can use the copy button to copy the email and password).
+5. [ ] Click the `Copy + Open` button, and login using the email and password listed above (you can use the copy button to copy the email and password).
 
 ## Part C: Create Web App from Container
 
-5. [ ] In the docker tab of the explorer, right-click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
+6. [ ] In the docker tab of the explorer, right-click on the container named `pyconlabs.azurecr.io/<app_name>` and select Push
 
 !IMAGE[Push docker image](Images/PushDockerImage.png)
 
-6. [ ] Right->click Deploy to Azure App service, 
+7. [ ] Right->click Deploy to Azure App service, 
 
 !IMAGE[Push docker image](Images/DeployImageToAppService.png)
 
@@ -56,12 +58,12 @@ In the series of menus enter:
 
 Finally, we need to set the port number on the site to match the port on the Docker container.
 
-7. [ ] Go to the Azure tab, expand the subscription and web site, right-click on Application settings and select `Add New Setting...`. Name the setting `WEBSITES_PORT`, and set the value to `8000`.
+8. [ ] Go to the Azure tab, expand the subscription and web site, right-click on Application settings and select `Add New Setting...`. Name the setting `WEBSITES_PORT`, and set the value to `8000`.
 
 !IMAGE[Push docker image](Images/AddSetting.png)
 
-8. [ ] Right-click on the site and select `Restart`, and wait for the site to finish restarting
+9. [ ] Right-click on the site and select `Restart`, and wait for the site to finish restarting
 
 !IMAGE[Push docker image](Images/RestartWebApp.png)
 
-9. [ ] Right-click on the site and select `Browse`, or browse to ```<app_name>.azurewebsites.net``` to see your message! It may take a minute to load.
+10. [ ] Right-click on the site and select `Browse`, or browse to ```<app_name>.azurewebsites.net``` to see your message! It may take a minute to load.
