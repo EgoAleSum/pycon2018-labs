@@ -20,7 +20,7 @@ Starting with the sample flask app and Dockerfile you will create, build and run
 
 3. [ ] Right-click on the `Dockerfile` and select `Build Image` to build the docker image. Use the default image name `flask-webapp-quickstart:latest`.
 
-!IMAGE[Build Docker Image](images/BuildImage.png)
+!IMAGE[Build Docker Image](Images/BuildImage.png)
 
 ## Part B: Run the Docker container
 

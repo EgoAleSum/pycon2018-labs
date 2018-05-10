@@ -28,13 +28,13 @@ In this lab, you will:
 
 3. [ ] Right-click on the `Dockerfile` file and select `Build Image` to build the docker image. Name the image `pyconlabs.azurecr.io/<app_name>:latest`, where `<app_name>` is a globally unique name, e.g. `<your_name_no_spaces>pycon`.
 
-!IMAGE[Build Docker Image](images/BuildImage.png)
+!IMAGE[Build Docker Image](Images/BuildImage.png)
 
 ## Part B: Sign in to Azure
 
 4. [ ] Press `Ctrl+Shift+P` to open the Command Palette, type and/or select `> Azure: Sign In`.
 
-!IMAGE[Build Docker Image](images/AzureSignIn.png)
+!IMAGE[Build Docker Image](Images/AzureSignIn.png)
 
 5. [ ] Click the `Copy + Open` button, and login using the email and password listed above (you can use the copy button to copy the email and password).
 
