@@ -40,13 +40,13 @@ Note that we'll be following the same format throughout this lab. Paste in the s
 
 If you created your own key for the API, update `api_key` and `api_url` with the values from the Azure Portal.
 
-```
+++```python
 import requests
 
 api_key = 'YOUR_API_KEY'
 api_url = 'https://eastus2.api.cognitive.microsoft.com/face/v1.0'  # or your region, if different.
 face_detect_endpoint_url = api_url + '/detect'
-```
+```++
 
 Next, let's select an image to run the face detection algorithm on. You can use an image of your own by providing the URL, or you can use one of the sample images included in the demo at the URLs below.
 
