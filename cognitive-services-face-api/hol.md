@@ -10,9 +10,9 @@ This lab will take approximately 5-10 minutes to complete, and requires only nov
 
 ## Prerequisites
 
-Using the Face API requires a key, which is provided in this lab. 
+Using the Face API requires a key, which is provided later on in this lab.
 
-If you want a key of your own, go to [https://portal.azure.com](https://portal.azure.com), select the Face API and follow the instructions to create your free Face API key. Then use the endpoint and the key from the portal .
+To create a free key of your own, go to [https://portal.azure.com](https://portal.azure.com), select the Face API and follow the instructions to create your Face API key. Then use the endpoint and the key from the portal.
 
 In the example below, we'll be using the `requests` library to make queries using a Jupyter Notebook.
 
@@ -40,13 +40,13 @@ Note that we'll be following the same format throughout this lab. Paste in the s
 
 If you created your own key for the API, update `api_key` and `api_url` with the values from the Azure Portal.
 
-++```python
+```python
 import requests
 
 api_key = 'YOUR_API_KEY'
 api_url = 'https://eastus2.api.cognitive.microsoft.com/face/v1.0'  # or your region, if different.
 face_detect_endpoint_url = api_url + '/detect'
-```++
+```
 
 Next, let's select an image to run the face detection algorithm on. You can use an image of your own by providing the URL, or you can use one of the sample images included in the demo at the URLs below.
 
@@ -69,17 +69,13 @@ In this code, we've specified our API Key, the API URL for the region we'll be u
 
 ## Part B: Configuration
 
-Now we'll need to do a bit of configuration before we call the endpoint. The API key is passed in with the headers, and we're enumerating which attributes we want returned with the `returnFaceAttributes` property.
+Now we'll need to do a bit of configuration before we call the endpoint. This API key is passed in with the headers, and then we will enumerate which attributes we want returned with the `returnFaceAttributes` property.
 
 ```python
-headers = {
-    'Ocp-Apim-Subscription-Key': '72f5dda62fd74d11a842f33f730702a6'
-}
-params = {
-    'returnFaceAttributes': 'emotion'
-}
+headers = {'Ocp-Apim-Subscription-Key': '72f5dda62fd74d11a842f33f730702a6'}
+params = {'returnFaceAttributes': 'emotion'}
 ```
-In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as: `age, gender, headPose, smile, facialHair, glasses, hair, makeup, occlusion, accessories, blur, exposure, noise`
+In this example, we're only interested in the `emotion` property, but there are lots of other attributes available. Such as: `age`, `gender`, `headPose`, `smile`, `facialHair`, `glasses`, `hair`, `makeup`, `occlusion`, `accessories`, `blur`, `exposure`, `noise`
 
 To use them, you'd append these attributes as coma separated values to the `returnFaceAttributes` parameter.
 
@@ -97,9 +93,8 @@ faces = response.json()
 Let's examine the JSON response.
 
 ```python
-from pprint import pprint
 print('Found {} faces in the photo.'.format(len(faces)))
-pprint(response.json())
+response.json()
 ```
 
 The response is a list of dictionaries, containing a record for each unique face. It contains information such as an ID for the face we've identified, and the bounding rectangle coordinates for the face in the image we provided. 
@@ -118,4 +113,4 @@ for index, face in enumerate(faces):
 ## Conclusion
 
 That's it! We've learned how fast and easy it is to classify an image by emotion. 
-This lab covered just one facet of the Cognitive Services API. If you'd try more Cognitive Services, run through some [demos](https://aidemos.microsoft.com/) to see what else is possible with these services.
+This lab covered just one facet of the Cognitive Services API. If you'd try more Cognitive Services, feel free to play with the demos at https://aidemos.microsoft.com/ to see what else is possible with these services.
