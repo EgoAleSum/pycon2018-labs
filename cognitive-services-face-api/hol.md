@@ -10,9 +10,10 @@ This lab will take approximately 5-10 minutes to complete, and requires only nov
 
 ## Prerequisites
 
-Using the Face API requires a key, which is provided later on in this lab.
+The key required to use the Face API is provided for you.
 
-To create a free key of your own, go to [https://portal.azure.com](https://portal.azure.com), select the Face API and follow the instructions to create your Face API key. Then use the endpoint and the key from the portal.
+**OPTIONAL**   
+If you would rather go through the process of creating a free key, go to [https://portal.azure.com](https://portal.azure.com) and use the provided Azure Credentials to log in. Select the Face API and follow the instructions to create your Face API key. Then use the endpoint and the key from the portal.
 
 In the example below, we'll be using the `requests` library to make queries using a Jupyter Notebook.
 
@@ -38,12 +39,13 @@ Next, enter the following code into the notebook, and select 'Run' from the tool
 
 Note that we'll be following the same format throughout this lab. Paste in the sample code, then run it. 
 
+**OPTIONAL**   
 If you created your own key for the API, update `api_key` and `api_url` with the values from the Azure Portal.
 
 ```python
 import requests
 
-api_key = 'YOUR_API_KEY'
+api_key = '72f5dda62fd74d11a842f33f730702a6'
 api_url = 'https://eastus2.api.cognitive.microsoft.com/face/v1.0'  # or your region, if different.
 face_detect_endpoint_url = api_url + '/detect'
 ```
