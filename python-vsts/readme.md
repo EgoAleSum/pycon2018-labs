@@ -31,7 +31,7 @@ For this lab, we are going to use YAML builds. These are currently in preview an
 
 1. Select "Preview Features", and then change the dropdown to show features "for this account".
 
-1. Change the YAML Builds option to *On*. Save the settings, and confirm the change.
+1. Change the YAML Builds option to *On*. Confirm the change and close the settings panel.
 
 ## Part B: Import an existing project
 
