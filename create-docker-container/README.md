@@ -24,7 +24,7 @@ Starting with the sample flask app and Dockerfile you will create, build and run
 
 ## Part B: Run the Docker container
 
-4. [ ] Press ``Ctrl-` `` to open the integrated terminal in VS Code
+4. [ ] If the terminal is not already open, press ``Ctrl-` `` to open the integrated terminal in VS Code
 
 5. [ ] Run the container using the following command:
 `docker run --rm -it -p 8000:8000 flask-webapp-quickstart:latest`

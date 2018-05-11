@@ -26,7 +26,7 @@ In this lab, you will:
 
 2. [ ] In the `app/main.py` file, modify the "Hello World!" message on line 6 to a fun message of your choice, type in some HTML if you want!
 
-3. [ ] Right-click on the `Dockerfile` file and select `Build Image` to build the docker image. Name the image `pyconlabs.azurecr.io/<app_name>:latest`, where `<app_name>` is a globally unique name, e.g. `<your_name_no_spaces>pycon`.
+3. [ ] Right-click on the `Dockerfile` file and select `Build Image` to build the docker image. Name the image `pyconlabs.azurecr.io/<app_name>:latest`, where `<app_name>` is a GLOBALLY UNIQUE name, e.g. `<your_name_no_spaces>pycon`.
 
 !IMAGE[Build Docker Image](Images/BuildImage.png)
 
@@ -44,12 +44,13 @@ In this lab, you will:
 
 !IMAGE[Push docker image](Images/PushDockerImage.png)
 
-7. [ ] Right->click Deploy to Azure App service, 
+7. [ ] Expand Registries > Azure > pyconlabs.azurecr.io > <app name>, and then Right->click on the container image Deploy to Azure App service, 
 
 !IMAGE[Push docker image](Images/DeployImageToAppService.png)
 
 In the series of menus enter:
- - `DockerLab` for the resource group
+ - The second resource, the one that starts with `Resource*` for the resource group
+ - `East US` for the region
  - `DockerLabPlan` for the app service plan name
  - `B1 Basic` for the plan SKU
  - The same `<app_name>` you picked above for the site name
