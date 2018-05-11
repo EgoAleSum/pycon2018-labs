@@ -58,9 +58,11 @@ In this part, we will create a build definition as a YAML file in the repository
 
   ![New/File popup](images/new_file.png)
 
-1. Copy and paste the code below into the editor. This build definition will run tests on both Linux and MacOS, and if all tests pass, will generate a wheel and sdist.
+1. *On the desktop of your machine is a text file containing the below YAML build definition*. This build definition will run tests on both Linux and MacOS, and if all tests pass, will generate a wheel and sdist. Open the file, select all, and use Ctrl+C to copy and Ctrl+V to paste into the browser editor.
 
 > [!KNOWLEDGE] An **sdist** is a source distribution containing Python code. Users can install sdists using **pip**, but if native source files are included they may need a compiler to complete installation. A **wheel** is precompiled, so if a wheel is available for their platform, users can install the package without needing a compiler.
+
+> [!NOTE] Do not click on this text. It will not automatically type correctly.
 
 ```yaml
 phases:

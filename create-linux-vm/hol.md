@@ -72,7 +72,7 @@ The next step is about choosing a size for your VM. Azure offers multiple VM siz
 
 There are many more sizes, designed to accomodate workloads that require GPUs (e.g. for AI or rendering), for high-performance computing, SAP HANA, and more. The [Azure documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes) does a great job explaining all sizes, if you're curious.
 
-In this example, we're picking a B2s VM.
+In this example, we're picking a B2s VM, but feel free to select something with more RAM or more CPUs.
 
 ![Create VM: Step 2](images/vm-step-2.png)
 
@@ -91,7 +91,7 @@ Finally, in the last step you just need to confirm the creation of the VM. You'l
 
 ![Create VM: Step 4](images/vm-step-4.png)
 
-The creation of the VM will take a couple of minutes. Sit back and relax, or take this time as an opportunity to explore the Azure Portal.
+> [!NOTE] The creation of the VM will take a couple of minutes. Sit back and relax, or take this time as an opportunity to explore the Azure Portal.
 
 ### Step 3: Connect to the VM via SSH
 
