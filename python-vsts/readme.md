@@ -19,13 +19,19 @@ First, we will provision a Team Services account.
 
 1. Open your browser and navigate to https://www.visualstudio.com/team-services/. Select **Get started for free**
 
-1. Login with the following username and password:
-   > Username: ++@lab.CloudPortalCredential(1).Username++
-   > Password: ++@lab.CloudPortalCredential(1).Password++
+1. Login with the username and password at the top of the lab.
 
 1. Provide a name for your Visual Studio Team Services account and click **Continue** to start the creation process. (The name is not important and will be deleted after completing this lab.)
 
 1. In 1-2 minutes your account will be ready with a default project created.
+
+For this lab, we are going to use YAML builds. These are currently in preview and need to be enabled. To enable YAML builds:
+
+1. Click on the user icon in the top right of the page (it will probably have two letters in a circle).
+
+1. Select "Preview Features", and then change the dropdown to show features "for this account".
+
+1. Change the YAML Builds option to *On*. Confirm the change and close the settings panel.
 
 ## Part B: Import an existing project
 
